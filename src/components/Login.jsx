@@ -1,4 +1,6 @@
 import { useState } from "react";
+import LoginPasswordInput from "./LoginPasswordInput";
+import LoginEmailInput from "./LoginEmailInput";
 
 
 const Login = () => {
@@ -10,19 +12,7 @@ const Login = () => {
     const [isLoginClicked, setIsLoginClicked] = useState(false);
     const [emailIsInvalid, setEmailIsInvalid] = useState(false);
     const [email, setEmail] = useState("");
-    const [isEmailInputFocused, setEmailInputFocused] = useState(false);
 
-    const emailRegex = new RegExp(
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-
-    const isValid = () => {
-        if (!emailRegex.test(email)) {
-            setEmailIsInvalid(true);
-        } else {
-            setEmailIsInvalid(false);
-        }
-    }
 
     const handleLoginClick = () => {
         setIsLoginClicked(true);
@@ -63,19 +53,11 @@ const Login = () => {
                 console.error("Error:", error);
             });
     };
-    const handleInputFocus2 = () => {
-        setEmailInputFocused(true);
-    };
-
-    const handleInputBlur2 = () => {
-        setEmailInputFocused(false);
-    };
-
 
     return (
-        <div className="bg-success p-5 text-white">
+        <div className="p-5 text-white" >
             <form onSubmit={handleLogin}>
-                <div className="ps-5 pe-5">
+                <div className="login-container">
                     <img className="mb-4" src="../acme.png" alt="" />
                     <h2>Do you already have an account?</h2>
 
@@ -88,43 +70,15 @@ const Login = () => {
                     ) : (
                         isLoginClicked ? (
                             <div className="border rounded ps-5 pt-3 pb-3 pe-5">
-                                <div className="login-email-container col-lg-12">
-                                    <label>Email </label>
-                                    <div className="email-input-container">
-                                        <input
-                                            className="login-email-input "
-                                            type="email"
-                                            onFocus={handleInputFocus2}
-                                            onBlur={() => {
-                                                handleInputBlur2();
-                                                isValid();
-                                            }}
-                                            value={email}
-                                            onChange={
-                                                (e) => {
-                                                    setEmail(e.target.value)
-                                                    isValid();
-                                                }}
-                                        />
-                                    </div>
-                                    {emailIsInvalid && (
-                                        <div className="d-flex align-items-center ">
-                                            <div className="point4 me-2 "></div>
-                                            <p className="error-message text-danger m-0 ">Invalid e-mail format</p>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="passwordlogin-container mt-2 col-lg-12">
-                                    <label>Password </label>
-                                    <div className="passwordlogin-input-container">
-                                        <input
-                                            className="passwordlogin-input"
-                                            type="password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
+  
+                            <LoginEmailInput
+                            email={email}
+                            setEmail={setEmail}
+                            />
+                              <LoginPasswordInput
+                              password={password}
+                              setPassword={setPassword}
+                              />
                                 <div className="">
                                     <button
                                         style={{ fontSize: '14px', color: '#FFFFFF' }}
