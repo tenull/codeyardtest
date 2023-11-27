@@ -1,34 +1,28 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
-const RegisterEmailInput = ({ email,
+
+const EmailInput = ({ email,
   setEmail,
   emailIsInvalid,
-  setEmailIsInvalid }) => {
+  setEmailIsInvalid,
+isEmailInputFocused,
+handleInputBlur2,
+handleInputFocus2 }) => {
 
-    const [isEmailInputFocused, setEmailInputFocused] = useState(false);
-    
 
 
-  const handleInputFocus2 = () => {
-    setEmailInputFocused(true);
-};
-
-const handleInputBlur2 = () => {
-    setEmailInputFocused(false);
-};
-
-const [emailRegex, setEmailRegex] = useState(
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-);
+    const emailRegex = new RegExp(
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/
+      );
+      
 
 const [validationInProgress, setValidationInProgress] = useState(false);
 
 const validateEmail = () => {
   if (!emailRegex.test(email)) {
-    console.log('Email is invalid');
+
     setEmailIsInvalid(true);
   } else {
-    console.log('Email is valid');
     setEmailIsInvalid(false);
   }
 };
@@ -57,10 +51,7 @@ useEffect(() => {
                 className="email-input "
                 type="email"
                 onFocus={handleInputFocus2}
-                onBlur={() => {
-                    handleInputBlur2();
-
-                }}
+                onBlur={handleInputBlur2 ? () => handleInputBlur2() : undefined}
                 value={email}
                 onChange={(e) => {
                     setEmail(e.target.value)
@@ -81,4 +72,4 @@ useEffect(() => {
 
 };
 
-export default RegisterEmailInput;
+export default EmailInput;

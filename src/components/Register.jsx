@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RememberMe from "./RememberMe";
-import RegisterEmailInput from "./RegisterEmailInput";
-import RegisterPasswordInput from "./RegisterPasswordInput";
+import EmailInput from "./EmailInput";
+import PasswordInput from "./PasswordInput";
 const Register = () => {
 
 
@@ -10,6 +10,27 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [strength, setStrength] = useState(0);
     const [isRegistered, setIsRegistered] = useState(false);
+    const [isEmailInputFocused, setEmailInputFocused] = useState(false);
+    const [isInputFocused, setInputFocused] = useState(false);
+
+
+  const handleInputFocus2 = () => {
+    setEmailInputFocused(true);
+};
+
+const handleInputBlur2 = () => {
+    setEmailInputFocused(false);
+};
+
+const handleInputFocus = () => {
+    setInputFocused(true);
+};
+
+const handleInputBlur = () => {
+    setInputFocused(false);
+};
+
+
 
     const handleRegistration = () => {
         setIsRegistered(true);
@@ -22,17 +43,24 @@ const Register = () => {
                 <h6>Create your account by filling the form bellow.</h6>
                 {!isRegistered ? (
                     <form >
-                        <RegisterEmailInput
+                        <EmailInput
                             email={email}
                             setEmail={setEmail}
                             emailIsInvalid={emailIsInvalid}
                             setEmailIsInvalid={setEmailIsInvalid}
+                            isEmailInputFocused={isEmailInputFocused}
+                            handleInputFocus2={handleInputFocus2}
+                            handleInputBlur2={handleInputBlur2}
                         />
-                        <RegisterPasswordInput
+                        <PasswordInput
                             password={password}
                             setPassword={setPassword}
                             strength={strength}
                             setStrength={setStrength}
+                            handleInputFocus={handleInputFocus}
+                            handleInputBlur={handleInputBlur} 
+                            isInputFocused={isInputFocused}
+                            isCurrentInput={true}
                         />
                         <RememberMe />
                         <div className="d-flex justify-content-end mt-3">

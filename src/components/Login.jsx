@@ -1,6 +1,6 @@
 import { useState } from "react";
-import LoginPasswordInput from "./LoginPasswordInput";
-import LoginEmailInput from "./LoginEmailInput";
+import EmailInput from "./EmailInput";
+import PasswordInput from "./PasswordInput";
 
 
 const Login = () => {
@@ -12,6 +12,7 @@ const Login = () => {
     const [isLoginClicked, setIsLoginClicked] = useState(false);
     const [emailIsInvalid, setEmailIsInvalid] = useState(false);
     const [email, setEmail] = useState("");
+    const [strength, setStrength] = useState(0)
 
 
     const handleLoginClick = () => {
@@ -70,15 +71,19 @@ const Login = () => {
                     ) : (
                         isLoginClicked ? (
                             <div className="border rounded ps-5 pt-3 pb-3 pe-5">
-  
-                            <LoginEmailInput
-                            email={email}
-                            setEmail={setEmail}
-                            />
-                              <LoginPasswordInput
-                              password={password}
-                              setPassword={setPassword}
-                              />
+
+                                <EmailInput
+                                    email={email}
+                                    setEmail={setEmail}
+                                    setEmailIsInvalid={setEmailIsInvalid}
+                                    emailIsInvalid={emailIsInvalid}
+                                />
+                                <PasswordInput
+                                    password={password}
+                                    setPassword={setPassword}
+                                    setStrength={setStrength}
+                                    isCurrentInput={false}
+                                />
                                 <div className="">
                                     <button
                                         style={{ fontSize: '14px', color: '#FFFFFF' }}

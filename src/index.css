@@ -18,7 +18,13 @@ code {
   .login-container{
     padding-left: 25px;
     padding-right: 45px;
+
   }
+  .App{
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
 }
 @media (max-width:991px) {
   .register{
@@ -27,6 +33,8 @@ code {
     align-items: center;
   }
 }
+
+
 .login {
   background-image: url(../public/image.jpg);
   position: relative;
@@ -47,7 +55,7 @@ code {
   margin-bottom: 0px;
   font-size: 14px!important;
   line-height: 17px!important;
-  color:#757575
+  /* color:#757575 */
 }
 .email-container.focused {
   border-bottom: 1px solid #4A90E2;
@@ -61,6 +69,7 @@ code {
   
 }
 
+
 .email-input {
   flex: 1;
   border: none;
@@ -70,8 +79,11 @@ code {
   line-height: 17px!important;
   color: #757575!important;
   padding: 5px;
+  background-color: transparent;
 }
-
+.login-container input{
+  color: white!important;
+}
 
 ______________
 .login-email-container {
@@ -168,8 +180,9 @@ _______________
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif!important; 
   font-size: 14px!important;
   line-height: 17px!important;
-  color: #757575!important;
+  /* color: #757575!important; */
   padding: 5px;
+  background-color: transparent;
 }
 
 .password-toggle-icon {
@@ -329,8 +342,8 @@ input[type="checkbox"]:checked {
   background-color: #4A90E2;
   border-color: #4A90E2; 
 }
-.label-register{
+/* .label-register{
   font-size: 14px!important;
   line-height: 17px!important;
   color: #757575;
-}
+} */
